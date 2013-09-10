@@ -27,7 +27,8 @@ public abstract class URLObject {
 		if(str.length()>0){
 			str = str.substring(0, str.length()-DATA_SEPARATOR.length());
 		}
-		return StringUtils.urlEncode(str);
+		// return StringUtils.urlEncode(str);
+		return str;
 	}
 	
 	public static String mapToURLString(HashMap map) throws MonitisException{
@@ -39,6 +40,7 @@ public abstract class URLObject {
 		if(str.length()>0){
 			str = str.substring(0, str.length()-DATA_SEPARATOR.length());
 		}
-		return StringUtils.urlEncode(str);
+		// return StringUtils.urlEncode(str);
+		return str;
 	}
 }
