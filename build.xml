@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+
+<project name="Monitis-Java-SDK" default="default">
+	<property file="common.properties" />
+
+	<target name="clean" description="Clean...">
+		<!-- delete dir="${dir.dist}" / -->
+		<!-- delete dir="${dir.src}/res" / -->
+		<delete dir="${dir.classes}" />
+	</target>
+
+	<target name="init" depends="clean" description="Initializing...">
+		<!-- mkdir dir="${dir.dist}" / -->
+		<mkdir dir="${dir.classes}" />
+		<path id="compile.classpath">
+			<fileset dir="${dir.lib}" includes="*.jar" />
+		</path>
+	</target>
+
+	<target name="build" depends="init" description="Build...">
+		
+		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="${javac.debug}" classpathref="compile.classpath" />
+
+		<!-- mkdir dir="${dir.dist}" / -->
+		<!-- mkdir dir="${dir.dist}/lib" / -->
+
+		<!--
+		<copy todir="${dir.classes}/res/">
+			<fileset dir="${dir.res}/">
+				<include name="**/*.*" />
+				<exclude name="**/*.db" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dir.src}/res/">
+			<fileset dir="${dir.res}/">
+				<include name="**/*.*" />
+				<exclude name="**/*.db" />
+			</fileset>
+		</copy>
+		-->
+		
+		<jar destfile="${dir.dist}/${projectName}.jar">
+			<fileset dir="${dir.classes}" />
+			<fileset dir="${dir.src}">
+				<include name="**/*.properties" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</jar>
+
+		<!-- 
+		<copy todir="${dir.dist}/lib">
+			<fileset dir="${dir.lib}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+		-->
+
+	</target>
+	
+
+	<target name="default" depends="build" />
+</project>
